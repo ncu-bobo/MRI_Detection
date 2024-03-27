@@ -1,0 +1,21 @@
+data:
+  # 窗宽
+  ww: 350
+  # 窗位
+  wc: 50
+  # 初始数据目录
+  data_origin: './data/origin'
+  # 统一窗宽后的数据目录
+  data_winwid: './data/data_winwid'
+  # 裁剪后的数据目录
+  data_cropping: './data/data_cropping'
+  # 转换成img的数据目录
+  data_train: './data/data_train'
+
+train:
+  # 训练集数据旋转角度
+  degrees: 30
+  epochs: 80
+  learning_rate: 0.001
+  # 模型参数保存位置
+  model_state_dict: './model_store'
