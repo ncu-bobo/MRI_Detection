@@ -17,7 +17,7 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         img_path = os.path.join(self.image_dir, self.images[idx])
         label_path = os.path.join(self.label_dir, self.images[idx].replace('.jpg', '.png'))
-        image = Image.open(img_path).convert("RGB")
+        image = Image.open(img_path).convert("L")
         label = Image.open(label_path).convert("L") # 假设标签是灰度图
         if self.transform:
             image = self.transform(image)

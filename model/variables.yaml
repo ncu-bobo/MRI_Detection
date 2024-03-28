@@ -15,7 +15,8 @@ data:
 train:
   # 训练集数据旋转角度
   degrees: 30
-  epochs: 80
+  epochs: 3
   learning_rate: 0.001
   # 模型参数保存位置
   model_state_dict: './model_store'
+  batch_size: 4

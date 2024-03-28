@@ -114,20 +114,20 @@ def process():
         os.mkdir(data_train)
         os.makedirs(os.path.join(data_train, 'Set'))
         os.makedirs(os.path.join(data_train, 'Label'))
-        last_dict = {81, 82, 83, 84, 85, 86, 87, 88, 89, 90}  # 索引字典
+        # last_dict = {81, 82, 83, 84, 85, 86, 87, 88, 89, 90}  # 索引字典
         count = 0
 
         for f in tqdm(os.listdir(data_cropping+"/Set")):  # 遍历数据路径下的文件
             fname = int(f.split(".")[0])  # 获取文件名对应的数字索引
-            # 排除后10个样本
-            if fname in last_dict:  # 如果在排除列表中，则跳过当前循环
-                continue
+            # # 排除后10个样本
+            # if fname in last_dict:  # 如果在排除列表中，则跳过当前循环
+            #     continue
             origin_path = data_cropping+"/Set/" + f  # 原始图像路径
             seg_path = data_cropping+"/Label/" + f  # 标签图像路径
             origin_array = sitk.GetArrayFromImage(sitk.ReadImage(origin_path))  # 读取并转换原始图像为数组
             seg_array = sitk.GetArrayFromImage(sitk.ReadImage(seg_path))  # 读取并转换标签图像为数组
             for i in range(seg_array.shape[0]):  # 遍历标签图像数组的第一个维度（即z轴方向）
-                seg_image = seg_array[i, :, :]  # 获取当前切片的标签图像数组
+                seg_image = seg_array[i, :, :]*255  # 获取当前切片的标签图像数组
                 seg_image = np.rot90(np.transpose(seg_image, (1, 0)))  # 对标签图像数组进行旋转和转置操作
                 origin_image = origin_array[i, :, :]  # 获取当前切片的原始图像数组
                 origin_image = np.rot90(np.transpose(origin_image, (1, 0)))  # 对原始图像数组进行旋转和转置操作
